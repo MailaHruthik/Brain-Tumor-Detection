@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Brain Tumor Detection Result</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+    }
+    .container {
+      text-align: center;
+      margin-top: 50px;
+    }
+    .box {
+      margin: 20px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: #fff;
+      width: 35%; /* Adjust the width as needed */
+      display: block; /* Change display to block to stack boxes vertically */
+    }
+    h4{
+    background-color: #023047;
+    color: white;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Brain Tumor Detection Result</h1>
+    <h4 id="result-message">{{ prediction }}</h4>
+    
+    {% if prediction == 'Malignant' %}
+    <div class="box symptoms-box">
+      <h3>Symptoms:</h3>
+      <p>Persistent Headaches</p>
+      <p>Weakness or paralysis</p>
+      <p>Temporary vision loss</p>
+      <p>Memory loss(amnesia)</p>
+      <p>Language problems (aphasia)</p>
+      <p>Coordination problems (dyspraxia)</p>
+      <p>Nausea, vomiting, and drowsiness</p>
+    </div>
+    <div class="box precautions-box">
+      <h3>Precautions:</h3>
+      <p>Regular Medical Check-ups</p>
+      <p>Avoid touching</p>
+      <p>Mental health support</p>
+      <p>Manage stress levels</p>
+      <p>Minimize exposure to environmental toxins</p>
+      <p>Getting enough sleep</p>
+      <p>Avoid smoking and alcohol</p>
+
+    </div>
+    {% elif prediction == 'Benign' %}
+    <div class="box symptoms-box">
+      <h3>Symptoms:</h3>
+      <p>Headaches</p>
+      <p>Seizures</p>
+      <p>Cognitive Changes</p>
+      <p>Personality or Behavior Changes</p>
+      <p>Vision Problems</p>
+      <p>Nausea and Vomiting</p>
+    </div>
+    <div class="box precautions-box">
+      <h3>Precautions:</h3>
+      <p>Regular Medical Check-ups</p>
+      <p>Manage stress levels</p>
+      <p>Minimize exposure to environmental toxins</p>
+      <p>Getting enough sleep</p>
+      <p>Avoid smoking and alcohol</p>
+      <p>Maintain a healthy weight</p>
+      
+
+    </div>
+    {% elif prediction == 'No Tumor' %}
+    
+    <div class="box precautions-box">
+      <h3>Precautions:</h3>
+      <p>Regular check-ups</p>
+    </div>
+    {% endif %}
+  </div>
+</body>
+</html>

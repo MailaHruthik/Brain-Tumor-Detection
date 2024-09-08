@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-image: url('/static/background1.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 85vh; /* Set the height to cover the entire viewport height */
+        margin: 0; /* Remove default margin to avoid white space */
+        padding: 0; /* Remove default padding to avoid white space */
+        
+    }
+    .background{
+      filter: blur(10px); 
+    }
+    .container {
+        text-align: center;
+        margin-top: 50px;
+    }
+    h1 {
+        position: absolute;
+        top: 150px;
+        left: 50px;
+        padding: 10px 20px;
+        font-size: 30px; 
+        font-family: Times, serif
+    }
+    h2 {
+        position: absolute;
+        top: 40px;
+        left: 400px;
+        padding: 10px 20px;
+        font-size: 18px;
+        font-size: 3vw;
+        margin-top: 20px;
+        font-family: Times, serif;
+    }
+    p{
+        position: absolute;
+        top: 200px;
+        left: 50px;
+        padding: 10px 20px;
+        font-size: 10px;
+        font-size: 1.9vw;
+        margin-top: 20px;
+        font-family: Times, serif;
+    }
+
+     h3 {
+        position: absolute;
+        top: 390px;
+        right: 650px;
+        padding: 10px 20px;
+        font-size: 18px;
+        font-size: 2vw;
+        margin-top: 20px;
+        font-family: Times, serif;
+    }
+
+    .buttons {
+        margin-top: 600px;
+    }
+    .buttons button {
+        margin: 10px;
+        padding: 10px 20px;
+        font-size: 18px;
+        position: relative; /* Set position to relative for button container */
+    }
+    .buttons img {
+        position: absolute;
+        top: -110px; /* Adjust the position of the image */
+        left: 50%; /* Center the image horizontally */
+        transform: translateX(-50%); /* Center the image horizontally */
+        width: 100px; /* Adjust the width of the image */
+        height: 100px; /* Adjust the height of the image */
+        
+    }
+    .logout-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        padding: 10px 20px;
+        font-size: 18px;
+        margin: 10px;
+        padding: 10px 20px;
+        background-color: #023047;
+        color: white;
+        border: none;
+        border-radius: 7px;
+        cursor: pointer
+    }
+  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brain Tumor Detection and Assistance</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+  <div class="container">
+    <h1>Welcome {{ username }},</h1>
+    <h2>Brain Tumor Detection and Assistance</h2>
+    <p>IN THIS FAMILY NO ONE FIGHTS ALONE!</p>
+    <h3>Our Services</h3>
+    
+    <div class="buttons">
+      <button class="detection-btn" onclick="openDetection()"><img src="/static/detect.jpg">Tumor Detection</button>
+      <button class="assistant-btn" onclick="openAssistant()"><img src="/static/Assisstant.jpg">AI Assistant</button>
+      <button class="video-btn" onclick="openVideoConference()"><img src="/static/video.jpg">Video Conference</button>
+    </div>
+  </div>
+
+  <script>
+    function openDetection() {
+      window.location.href = "/index";
+    }
+
+    function openAssistant() {
+      window.location.href = "/help";
+    }
+
+    function openVideoConference() {
+      window.location.href = "/video_chat";
+    }
+  </script>
+</body>
+</html>

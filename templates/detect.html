@@ -1,0 +1,46 @@
+from flask import Flask, render_template, request, jsonify
+import cv2
+import numpy as np
+import tensorflow as tf
+
+app = Flask(__name__)
+
+# Load the TensorFlow model
+model = tf.keras.models.load_model('CNN_model.h5')
+
+# Define a function to preprocess the uploaded image
+def preprocess_image(image):
+    image = cv2.resize(image, (32, 32))
+    image = np.expand_dims(image, axis=0)
+    image = image / 255.0  # Normalize the image
+    return image
+
+# Define a route to render the HTML form
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+# Define a route to handle the image upload and perform tumor detection
+@app.route('/detect', methods=['POST'])
+def detect_tumor():
+    if 'file' not in request.files:
+        return jsonify({'error': 'No file part'})
+
+    file = request.files['file']
+    if file.filename == '':
+        return jsonify({'error': 'No selected file'})
+
+    if file:
+        image = cv2.imdecode(np.fromstring(file.read(), np.uint8), cv2.IMREAD_COLOR)
+        preprocessed_image = preprocess_image(image)
+        prediction = model.predict(preprocessed_image)
+
+        if np.max(prediction) > 0.5:
+            result = 'Brain tumor detected!'
+        else:
+            result = 'No brain tumor detected!'
+
+        return jsonify({'result': result})
+
+if __name__ == '__main__':
+    app.run(debug=True)
